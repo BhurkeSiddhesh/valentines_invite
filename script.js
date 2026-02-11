@@ -4,7 +4,6 @@ const noBtn = document.getElementById('noBtn');
 const content = document.getElementById('content');
 const successMessage = document.getElementById('successMessage');
 const heartsContainer = document.getElementById('hearts');
-const duck = document.getElementById('duck');
 
 let noBtnClickCount = 0;
 
@@ -12,13 +11,7 @@ let noBtnClickCount = 0;
 yesBtn.addEventListener('click', () => {
     content.style.display = 'none';
     successMessage.style.display = 'block';
-
-    // Make duck happy!
-    duck.classList.add('happy');
-    setTimeout(() => {
-        duck.classList.remove('happy');
-    }, 1800);
-
+    
     // Create floating hearts
     for (let i = 0; i < 5; i++) {
         const heart = document.createElement('span');
@@ -26,7 +19,7 @@ yesBtn.addEventListener('click', () => {
         heart.textContent = '❤️';
         heartsContainer.appendChild(heart);
     }
-
+    
     // Create falling hearts in background
     createFallingHearts();
 });
@@ -34,35 +27,28 @@ yesBtn.addEventListener('click', () => {
 // Fun knack: Make the "No" button run away!
 noBtn.addEventListener('mouseenter', () => {
     noBtnClickCount++;
-
-    // Make duck sad!
-    duck.classList.remove('happy');
-    duck.classList.add('sad');
-    setTimeout(() => {
-        duck.classList.remove('sad');
-    }, 1000);
-
+    
     // Get button and container dimensions
     const containerRect = document.querySelector('.container').getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
-
+    
     // Calculate maximum positions (keep button inside container)
     const maxX = containerRect.width - btnRect.width - 40;
     const maxY = 200; // Limited vertical movement
-
+    
     // Generate random position
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
-
+    
     // Move the button
     noBtn.style.position = 'absolute';
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
-
+    
     // Make "Yes" button bigger each time "No" is approached
     const newSize = 1 + (noBtnClickCount * 0.1);
     yesBtn.style.transform = `scale(${newSize})`;
-
+    
     // Change "No" button text after a few attempts
     if (noBtnClickCount === 3) {
         noBtn.textContent = 'Are you sure?';
