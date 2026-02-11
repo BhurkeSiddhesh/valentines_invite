@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? 💕</title>
+    <title>Will You Be My Valentine? 🦆</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Will You Be My Valentine? 💕</h1>
+    <div class="background-hearts"></div>
+
+    <div class="card">
+        <div class="header">
+            <span class="material-icons">favorite</span>
+            <span class="material-icons">favorite</span>
+            <span class="material-icons">favorite</span>
+            <span class="material-icons">favorite</span>
+            <span class="material-icons">favorite</span>
+            <span class="material-icons">favorite</span>
+        </div>
+
+        <div class="invitation-text">Special Invitation</div>
         
+        <h1 class="title">Will You Be My Valentine?</h1>
+
+        <div class="image-container">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYGpirn8QkHHqURR-AIMtYc917lC32eWCWaIKsWyJwZ6hQOhJHz3KgPgFz0dCLNea-U5u7urcY_qfH9vGfSiM2M4Yp7YKHHJnge5roL4Rsb-c_x-XCgPkVWG1SFiitDM68ugXnDZ5reHV_OW_WaVwwSJER2IppbVJ2Uys3I8kHPqFa0y1xR1wFV_3XgzIAMBEq91noZ9Fs2lNNPIlScgQBkUpC0TBDCEzLUIsLPT59cjuHNNU-DIcOlorHXGf7qApDepg5CU8y2uM" alt="Cute ducks in love" class="duck-image">
+            <div class="floating-heart-icon left"><span class="material-icons">favorite</span></div>
+            <div class="floating-heart-icon right"><span class="material-icons">favorite</span></div>
+        </div>
+
         <div class="content" id="content">
-            <p class="question">I have something important to ask you...</p>
             <div class="button-container">
-                <button class="btn btn-yes" id="yesBtn">Yes! 💖</button>
+                <button class="btn btn-yes" id="yesBtn">Yes! 🦆</button>
                 <button class="btn btn-no" id="noBtn">No</button>
             </div>
         </div>
@@ -22,6 +42,26 @@
             <h2>Yay! 🎉</h2>
             <p>You've made me the happiest person! 💕</p>
             <div class="hearts" id="hearts"></div>
+        </div>
+
+        <div class="footer">
+            <div class="status-section">
+                <div class="status-row">
+                    <span class="material-icons icon-love">notifications</span>
+                    <div class="status-text">
+                        <span class="status-label">Status</span>
+                        <span class="status-value" id="statusValue">Waiting for answer...</span>
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span class="material-icons icon-event">local_activity</span>
+                    <div class="status-text">
+                        <span class="status-label">Event</span>
+                        <span class="status-value">Valentine's Day 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="made-with-love">Made with love</div>
         </div>
     </div>
 

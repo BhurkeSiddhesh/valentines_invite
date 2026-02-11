@@ -5,7 +5,7 @@ A fun, interactive Valentine's Day invitation website with a playful twist!
 
 ## Features
 
-- 💖 Beautiful gradient design with animated hearts
+- 💖 Beautiful "Cute Ducks in Love" theme with pastel colors and floating hearts
 - 🎯 Interactive "No" button that runs away from the cursor (the fun knack!)
 - 🎉 Celebration animation when "Yes" is clicked
 - 📱 Fully responsive design
