@@ -98,6 +98,7 @@ body {
     right: 10px;
     font-size: 30px;
     transform: rotate(15deg);
+    animation-name: floatRight;
     animation-delay: 1.5s;
 }
 
@@ -224,11 +225,6 @@ body {
     50% { 
         transform: translateY(-10px) rotate(-15deg);
     }
-}
-
-/* Float animation for right heart with different rotation */
-.floating-heart-icon.right {
-    animation-name: floatRight;
 }
 
 @keyframes floatRight {
