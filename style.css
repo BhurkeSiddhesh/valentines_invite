@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+}
+
+.title {
+    color: #e74c3c;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.content {
+    margin: 30px 0;
+}
+
+.question {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.btn-yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+}
+
+.btn-no {
+    background: #95a5a6;
+    color: white;
+    position: relative;
+}
+
+.btn-no:hover {
+    background: #7f8c8d;
+}
+
+.success-message {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.success-message h2 {
+    color: #e74c3c;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.success-message p {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.hearts {
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+.heart {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    margin: 0 5px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.heart:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.heart:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.heart:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.heart:nth-child(5) {
+    animation-delay: 2s;
+}
+
+/* Background hearts */
+.bg-heart {
+    position: fixed;
+    font-size: 30px;
+    animation: falling 10s linear infinite;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
