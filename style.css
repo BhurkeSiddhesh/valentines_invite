@@ -90,14 +90,14 @@ body {
     top: -10px;
     left: 10px;
     font-size: 24px;
-    --rotation: -15deg;
+    transform: rotate(-15deg);
 }
 
 .floating-heart-icon.right {
     bottom: 10px;
     right: 10px;
     font-size: 30px;
-    --rotation: 15deg;
+    transform: rotate(15deg);
     animation-delay: 1.5s;
 }
 
@@ -138,7 +138,7 @@ body {
 .btn-no {
     background: #F0F0F0;
     color: #7A7A7A;
-    position: relative; /* For the runaway effect */
+    position: relative; /* Initial positioning; runaway effect uses absolute positioning set in script.js */
 }
 
 .btn-no:hover {
@@ -218,8 +218,26 @@ body {
 
 /* Animations */
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
-    50% { transform: translateY(-10px) rotate(var(--rotation)); }
+    0%, 100% { 
+        transform: translateY(0) rotate(-15deg);
+    }
+    50% { 
+        transform: translateY(-10px) rotate(-15deg);
+    }
+}
+
+/* Float animation for right heart with different rotation */
+.floating-heart-icon.right {
+    animation-name: floatRight;
+}
+
+@keyframes floatRight {
+    0%, 100% { 
+        transform: translateY(0) rotate(15deg);
+    }
+    50% { 
+        transform: translateY(-10px) rotate(15deg);
+    }
 }
 
 @keyframes fadeIn {
