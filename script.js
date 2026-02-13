@@ -12,6 +12,7 @@ const duckImage = document.getElementById('duckImage');
 const personalMessage = document.getElementById('personalMessage');
 const chancesContainer = document.getElementById('chancesContainer');
 const chancesValue = document.getElementById('chancesValue');
+const pondyaaOverlay = document.getElementById('pondyaaOverlay');
 
 let noBtnClickCount = 0;
 let maxChances = 10;
@@ -38,6 +39,16 @@ function preloadImages() {
     Object.values(duckStates).forEach(url => {
         const img = new Image();
         img.src = url;
+    });
+}
+
+// Close popup logic for Valentine page
+const closePondyaaBtn = document.getElementById('closePondyaaBtn');
+if (closePondyaaBtn) {
+    closePondyaaBtn.addEventListener('click', () => {
+        if (pondyaaOverlay) {
+            pondyaaOverlay.style.display = 'none';
+        }
     });
 }
 
@@ -140,15 +151,15 @@ yesBtn.addEventListener('click', () => {
 
     // Update status footer
     if (statusValue) {
-        statusValue.textContent = 'Snehal said YES! 🎉💕';
+        statusValue.textContent = 'Snehal said YES! 🍑🎉💕';
         statusValue.style.color = '#FF6F61';
     }
 
-    // Create inline hearts
-    for (let i = 0; i < 8; i++) {
+    // Create inline hearts and peaches
+    for (let i = 0; i < 15; i++) { // Increased count
         const heart = document.createElement('span');
         heart.className = 'heart';
-        heart.textContent = ['❤️', '💕', '🦆', '✨'][Math.floor(Math.random() * 4)];
+        heart.textContent = ['❤️', '💕', '🦆', '✨', '🍑'][Math.floor(Math.random() * 5)];
         heartsContainer.appendChild(heart);
     }
 
@@ -230,7 +241,13 @@ function runAway() {
     // Change duck state based on attempts
     if (noBtnClickCount === 1) {
         setDuckState('shocked');
-    } else if (noBtnClickCount >= 2 && noBtnClickCount < 5) {
+    } else if (noBtnClickCount === 2) {
+        // Trigger Pondyaa Popup
+        if (pondyaaOverlay) {
+            pondyaaOverlay.style.display = 'flex';
+        }
+        setDuckState('sad');
+    } else if (noBtnClickCount > 2 && noBtnClickCount < 5) {
         setDuckState('sad');
     } else if (noBtnClickCount >= 5) {
         setDuckState('mad');
@@ -313,18 +330,26 @@ function createConfettiBurst() {
 }
 
 function createFallingHearts() {
-    const maxActiveHearts = 12;
+    const maxActiveHearts = 20; // Increased count
     for (let i = 0; i < maxActiveHearts; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.className = 'bg-heart';
-            heart.textContent = ['💕', '🦆', '✨', '💌', '❤️'][Math.floor(Math.random() * 5)];
+            // Mix of hearts and PEACHES 🍑
+            const symbols = ['💕', '🦆', '✨', '🍑', '🍑', '🍑', '❤️'];
+            heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+            // Random size variation (0.8x to 2.5x)
+            const size = Math.random() * 1.7 + 0.8;
+            heart.style.fontSize = size + 'rem';
+
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDelay = Math.random() * 2 + 's';
             const dur = Math.random() * 3 + 5;
             heart.style.animationDuration = dur + 's';
+
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), dur * 1000);
-        }, i * 100);
+        }, i * 300);
     }
 }

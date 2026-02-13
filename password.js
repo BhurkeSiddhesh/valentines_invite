@@ -9,7 +9,9 @@ const attemptCounter = document.getElementById('attemptCounter');
 const priceySection = document.getElementById('priceySection');
 const priceyText = document.getElementById('priceyText');
 const letMeInBtn = document.getElementById('letMeInBtn');
+const letMeInBtn = document.getElementById('letMeInBtn');
 const hintBox = document.getElementById('hintBox');
+const pondyaaOverlay = document.getElementById('pondyaaOverlay');
 
 const SECRET = 'bochuu';
 let attempts = 0;
@@ -34,13 +36,13 @@ const priceyMessages = [
 
 function checkPassword() {
     const value = passwordInput.value.trim().toLowerCase();
-    
+
     if (!value) {
         showFeedback("Type something at least! 😂", "warning");
         shakeInput();
         return;
     }
-    
+
     if (value === SECRET) {
         // Correct!
         showFeedback("YESSS! That's me! 🦆💕", "success");
@@ -49,7 +51,7 @@ function checkPassword() {
         inputGroup.classList.add('success');
         passwordInput.disabled = true;
         unlockBtn.disabled = true;
-        
+
         // Redirect after celebration
         setTimeout(() => {
             document.body.classList.add('page-exit');
@@ -59,11 +61,11 @@ function checkPassword() {
         }, 1500);
         return;
     }
-    
+
     // Wrong answer
     attempts++;
     shakeInput();
-    
+
     // Remove a heart
     const hearts = heartsLeft.querySelectorAll('span');
     if (hearts.length > 0) {
@@ -71,7 +73,7 @@ function checkPassword() {
         lastHeart.classList.add('heart-break');
         setTimeout(() => lastHeart.textContent = '🖤', 300);
     }
-    
+
     // Update counter text
     const remaining = maxAttempts - attempts;
     const attemptsText = document.querySelector('.attempts-text');
@@ -80,32 +82,37 @@ function checkPassword() {
     } else {
         attemptsText.textContent = 'No chances left!';
     }
-    
+
     if (attempts <= maxAttempts) {
         showFeedback(wrongMessages[Math.min(attempts - 1, wrongMessages.length - 1)], "error");
     }
-    
+
     // Progressive hints
     if (attempts === 2) {
+        // Trigger Pondyaa Popup
+        if (pondyaaOverlay) {
+            pondyaaOverlay.style.display = 'flex';
+        }
+
         hintBox.innerHTML = `
             <span class="material-icons hint-icon">lightbulb</span>
             <p class="hint-text"><strong>Hint:</strong> It starts with "Bo" and ends with "uu" 🦆</p>
         `;
         hintBox.classList.add('hint-glow');
     }
-    
+
     if (attempts === 4) {
         hintBox.innerHTML = `
             <span class="material-icons hint-icon">lightbulb</span>
             <p class="hint-text"><strong>Big Hint:</strong> B _ _ _ u u 🦆 (6 letters!)</p>
         `;
     }
-    
+
     // Pricey mode after max attempts
     if (attempts >= maxAttempts) {
         enterPriceyMode();
     }
-    
+
     passwordInput.value = '';
     passwordInput.focus();
 }
@@ -115,7 +122,7 @@ function enterPriceyMode() {
     attemptCounter.style.display = 'none';
     hintBox.style.display = 'none';
     priceySection.style.display = 'block';
-    
+
     // Show pricey messages one by one
     let msgIndex = 0;
     function showNextPriceyMessage() {
@@ -124,7 +131,7 @@ function enterPriceyMode() {
             priceyText.classList.add('pricey-fade');
             setTimeout(() => priceyText.classList.remove('pricey-fade'), 500);
             msgIndex++;
-            
+
             if (msgIndex < priceyMessages.length) {
                 setTimeout(showNextPriceyMessage, 2500);
             } else {
@@ -143,10 +150,10 @@ function enterPriceyMode() {
 letMeInBtn.addEventListener('click', () => {
     priceyText.textContent = "Fine... but only because you're cute 😤💕";
     letMeInBtn.style.display = 'none';
-    
+
     lockIcon.innerHTML = '<span class="material-icons">lock_open</span>';
     lockIcon.classList.add('unlocked');
-    
+
     setTimeout(() => {
         document.body.classList.add('page-exit');
         setTimeout(() => {
@@ -195,5 +202,13 @@ function createFallingHearts() {
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), dur * 1000);
         }, i * 150);
+    }
+}
+
+// Global function for onclick in HTML
+window.closePondyaaPopup = function () {
+    if (pondyaaOverlay) {
+        pondyaaOverlay.style.display = 'none';
+        passwordInput.focus();
     }
 }

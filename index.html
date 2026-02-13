@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔒 Secret Page</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="password-page">
     <div class="background-hearts"></div>
 
@@ -27,11 +31,13 @@
 
         <div class="hint-box" id="hintBox">
             <span class="material-icons hint-icon">lightbulb</span>
-            <p class="hint-text"><strong>Hint:</strong> What do I call you very often? <br><em>(the word ends with "uu" 👀)</em></p>
+            <p class="hint-text"><strong>Hint:</strong> What do I call you very often? <br><em>(the word ends with "uu"
+                    👀)</em></p>
         </div>
 
         <div class="password-input-group" id="inputGroup">
-            <input type="text" id="passwordInput" class="password-input" placeholder="Type the magic word..." autocomplete="off" spellcheck="false">
+            <input type="text" id="passwordInput" class="password-input" placeholder="Type the magic word..."
+                autocomplete="off" spellcheck="false">
             <button class="btn-unlock" id="unlockBtn">
                 <span class="material-icons">arrow_forward</span>
             </button>
@@ -54,6 +60,16 @@
         </div>
     </div>
 
+    <!-- Pondyaa Judgment Popup -->
+    <div class="pondyaa-overlay" id="pondyaaOverlay">
+        <div class="pondyaa-content">
+            <img src="images/pondyaa.png" alt="Judging You" class="pondyaa-img">
+            <p class="pondyaa-text">Pondyaa you can do better! 😒</p>
+            <button class="btn-sorry" onclick="closePondyaaPopup()">I'll try again... 😔</button>
+        </div>
+    </div>
+
     <script src="password.js"></script>
 </body>
+
 </html>

@@ -215,6 +215,81 @@ body.page-exit {
     margin-bottom: 8px;
 }
 
+/* Pondyaa Popup Overlay */
+.pondyaa-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: none;
+    /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.pondyaa-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 4px solid #ff4d6d;
+}
+
+.pondyaa-img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pondyaa-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #d63353;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.btn-sorry {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: transform 0.2s;
+}
+
+.btn-sorry:hover {
+    transform: scale(1.05);
+    background: #d63353;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .password-subtitle {
     color: #7A7A7A;
     font-size: 0.95em;
