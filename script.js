@@ -13,6 +13,7 @@ const personalMessage = document.getElementById('personalMessage');
 const chancesContainer = document.getElementById('chancesContainer');
 const chancesValue = document.getElementById('chancesValue');
 const pondyaaOverlay = document.getElementById('pondyaaOverlay');
+const chhaduOverlay = document.getElementById('chhaduOverlay');
 
 let noBtnClickCount = 0;
 let maxChances = 10;
@@ -48,6 +49,15 @@ if (closePondyaaBtn) {
     closePondyaaBtn.addEventListener('click', () => {
         if (pondyaaOverlay) {
             pondyaaOverlay.style.display = 'none';
+        }
+    });
+}
+
+const closeChhaduBtn = document.getElementById('closeChhaduBtn');
+if (closeChhaduBtn) {
+    closeChhaduBtn.addEventListener('click', () => {
+        if (chhaduOverlay) {
+            chhaduOverlay.style.display = 'none';
         }
     });
 }
@@ -247,7 +257,13 @@ function runAway() {
             pondyaaOverlay.style.display = 'flex';
         }
         setDuckState('sad');
-    } else if (noBtnClickCount > 2 && noBtnClickCount < 5) {
+    } else if (noBtnClickCount === 3) {
+        // Trigger Chhadu Popup
+        if (chhaduOverlay) {
+            chhaduOverlay.style.display = 'flex';
+        }
+        setDuckState('sad');
+    } else if (noBtnClickCount > 3 && noBtnClickCount < 5) {
         setDuckState('sad');
     } else if (noBtnClickCount >= 5) {
         setDuckState('mad');
