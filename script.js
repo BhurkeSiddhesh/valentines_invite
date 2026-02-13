@@ -4,7 +4,7 @@ const noBtn = document.getElementById('noBtn');
 const content = document.getElementById('content');
 const successMessage = document.getElementById('successMessage');
 const heartsContainer = document.getElementById('hearts');
-const duck = document.getElementById('duck');
+const statusValue = document.getElementById('statusValue');
 
 let noBtnClickCount = 0;
 
@@ -12,12 +12,12 @@ let noBtnClickCount = 0;
 yesBtn.addEventListener('click', () => {
     content.style.display = 'none';
     successMessage.style.display = 'block';
-
-    // Make duck happy!
-    duck.classList.add('happy');
-    setTimeout(() => {
-        duck.classList.remove('happy');
-    }, 1800);
+    
+    // Update Status
+    if (statusValue) {
+        statusValue.textContent = 'They said YES! 🎉';
+        statusValue.style.color = '#FF6F61';
+    }
 
     // Create floating hearts
     for (let i = 0; i < 5; i++) {
@@ -26,7 +26,7 @@ yesBtn.addEventListener('click', () => {
         heart.textContent = '❤️';
         heartsContainer.appendChild(heart);
     }
-
+    
     // Create falling hearts in background
     createFallingHearts();
 });
@@ -34,35 +34,36 @@ yesBtn.addEventListener('click', () => {
 // Fun knack: Make the "No" button run away!
 noBtn.addEventListener('mouseenter', () => {
     noBtnClickCount++;
-
-    // Make duck sad!
-    duck.classList.remove('happy');
-    duck.classList.add('sad');
-    setTimeout(() => {
-        duck.classList.remove('sad');
-    }, 1000);
-
-    // Get button and container dimensions
-    const containerRect = document.querySelector('.container').getBoundingClientRect();
+    
+    // Get button and card dimensions
+    const card = document.querySelector('.card');
+    const cardRect = card.getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
+    
+    // Calculate maximum positions (keep button inside card, accounting for padding)
+    // We want the button to stay within the card boundaries
+    // The button is absolutely positioned relative to the card
 
-    // Calculate maximum positions (keep button inside container)
-    const maxX = containerRect.width - btnRect.width - 40;
-    const maxY = 200; // Limited vertical movement
+    const padding = 30; // approximate padding
+    const maxX = cardRect.width - btnRect.width - padding;
+    const maxY = cardRect.height - btnRect.height - padding;
+    
+    // Ensure we don't get negative values
+    const safeMaxX = Math.max(0, maxX);
+    const safeMaxY = Math.max(0, maxY);
 
-    // Generate random position
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
+    const randomX = Math.random() * safeMaxX;
+    const randomY = Math.random() * safeMaxY;
+    
     // Move the button
     noBtn.style.position = 'absolute';
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
-
+    
     // Make "Yes" button bigger each time "No" is approached
     const newSize = 1 + (noBtnClickCount * 0.1);
     yesBtn.style.transform = `scale(${newSize})`;
-
+    
     // Change "No" button text after a few attempts
     if (noBtnClickCount === 3) {
         noBtn.textContent = 'Are you sure?';
@@ -80,35 +81,28 @@ noBtn.addEventListener('click', () => {
 
 // Create falling hearts in the background
 function createFallingHearts() {
-    for (let i = 0; i < 15; i++) {
+    const maxActiveHearts = 15; // Reduced from 30 for better performance
+    for (let i = 0; i < maxActiveHearts; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.className = 'bg-heart';
             heart.textContent = '💕';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.animationDuration = (Math.random() * 3 + 7) + 's';
+            const animationDuration = Math.random() * 3 + 5; // 5-8 seconds
+            heart.style.animationDuration = animationDuration + 's';
             document.body.appendChild(heart);
             
-            // Remove heart after animation
+            // Remove heart after animation completes
             setTimeout(() => {
                 heart.remove();
-            }, 10000);
-        }, i * 200);
+            }, animationDuration * 1000);
+        }, i * 100);
     }
 }
 
 // Add some initial background hearts
 window.addEventListener('load', () => {
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            const heart = document.createElement('div');
-            heart.className = 'bg-heart';
-            heart.textContent = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            heart.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(heart);
-        }, i * 500);
-    }
+    createFallingHearts(); // Start some hearts immediately
+    setInterval(createFallingHearts, 10000); // Keep them coming
 });
