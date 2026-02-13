@@ -15,7 +15,7 @@ yesBtn.addEventListener('click', () => {
     
     // Update Status
     if (statusValue) {
-        statusValue.textContent = 'She said YES! 🎉';
+        statusValue.textContent = 'They said YES! 🎉';
         statusValue.style.color = '#FF6F61';
     }
 
@@ -81,20 +81,22 @@ noBtn.addEventListener('click', () => {
 
 // Create falling hearts in the background
 function createFallingHearts() {
-    for (let i = 0; i < 30; i++) {
+    const maxActiveHearts = 15; // Reduced from 30 for better performance
+    for (let i = 0; i < maxActiveHearts; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.className = 'bg-heart';
             heart.textContent = '💕';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            const animationDuration = Math.random() * 3 + 5; // 5-8 seconds
+            heart.style.animationDuration = animationDuration + 's';
             document.body.appendChild(heart);
             
-            // Remove heart after animation
+            // Remove heart after animation completes
             setTimeout(() => {
                 heart.remove();
-            }, 8000);
+            }, animationDuration * 1000);
         }, i * 100);
     }
 }
