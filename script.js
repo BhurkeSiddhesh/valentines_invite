@@ -185,32 +185,29 @@ yesBtn.addEventListener('click', () => {
     }, 2500);
 });
 
-// 🍑 Peach Emoji Fireworks
+// 🍑 Peach Image Fireworks
 function launchPeachFireworks() {
-    const emojis = ['🍑', '🍑', '🍑', '💕', '❤️', '✨', '🎉'];
-    const burstCount = 5; // Number of burst waves
+    const burstCount = 5;
 
     for (let burst = 0; burst < burstCount; burst++) {
         setTimeout(() => {
-            // Random burst origin point
-            const originX = 20 + Math.random() * 60; // 20-80% of screen width
-            const originY = 30 + Math.random() * 40; // 30-70% of screen height
-            const particleCount = 15 + Math.floor(Math.random() * 10);
+            const originX = 20 + Math.random() * 60;
+            const originY = 30 + Math.random() * 40;
+            const particleCount = 12 + Math.floor(Math.random() * 8);
 
             for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
+                const particle = document.createElement('img');
+                particle.src = 'images/peach.jpg';
                 particle.style.position = 'fixed';
                 particle.style.zIndex = '10000';
                 particle.style.pointerEvents = 'none';
                 particle.style.left = originX + '%';
                 particle.style.top = originY + '%';
-                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-                // Random size
-                const size = 1 + Math.random() * 2.5;
-                particle.style.fontSize = size + 'rem';
+                const size = 25 + Math.random() * 50;
+                particle.style.width = size + 'px';
+                particle.style.height = 'auto';
 
-                // Physics-based trajectory
                 const angle = (Math.PI * 2 * i) / particleCount + (Math.random() * 0.5);
                 const velocity = 150 + Math.random() * 250;
                 const dx = Math.cos(angle) * velocity;
@@ -221,16 +218,14 @@ function launchPeachFireworks() {
 
                 document.body.appendChild(particle);
 
-                // Animate outward
                 requestAnimationFrame(() => {
                     particle.style.transform = `translate(${dx}px, ${dy}px) rotate(${Math.random() * 720}deg)`;
                     particle.style.opacity = '0';
                 });
 
-                // Remove after animation
                 setTimeout(() => particle.remove(), 1300);
             }
-        }, burst * 500); // Stagger each burst by 500ms
+        }, burst * 500);
     }
 }
 
@@ -263,12 +258,11 @@ function runAway() {
     noBtnClickCount++;
     maxChances--;
 
-    // Update chances display
+    // Update chances display with hearts
     if (chancesValue) {
-        chancesValue.textContent = Math.max(0, maxChances);
-        // Turn redder as it gets lower
+        const remaining = Math.max(0, maxChances);
+        chancesValue.textContent = '❤️'.repeat(remaining);
         if (maxChances <= 3) {
-            chancesValue.style.color = '#ff0000';
             chancesValue.style.fontSize = '1.2rem';
         }
     }

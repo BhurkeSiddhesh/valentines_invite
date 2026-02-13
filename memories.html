@@ -362,6 +362,50 @@
                 opacity: 1;
             }
         }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 1.5px;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+        }
+
+        .shooting-star.animate {
+            animation: shootingStar var(--duration) linear forwards;
+        }
+
+        @keyframes shootingStar {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(var(--angle));
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--dx), var(--dy)) rotate(var(--angle));
+            }
+        }
     </style>
 </head>
 
@@ -496,6 +540,48 @@
             starsContainer.appendChild(star);
         }
 
+        // Shooting Stars — continuous background animation
+        function spawnShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+
+            // Random start position (upper portion of screen)
+            const startX = 10 + Math.random() * 80; // 10-90% from left
+            const startY = Math.random() * 50;       // top half of screen
+            star.style.left = startX + '%';
+            star.style.top = startY + '%';
+
+            // Direction: generally moving down-right at varying angles
+            const angle = 30 + Math.random() * 30; // 30-60 degrees
+            const distance = 200 + Math.random() * 300;
+            const dx = Math.cos(angle * Math.PI / 180) * distance;
+            const dy = Math.sin(angle * Math.PI / 180) * distance;
+            const duration = 0.6 + Math.random() * 0.8;
+
+            star.style.setProperty('--angle', angle + 'deg');
+            star.style.setProperty('--dx', dx + 'px');
+            star.style.setProperty('--dy', dy + 'px');
+            star.style.setProperty('--duration', duration + 's');
+
+            document.body.appendChild(star);
+
+            // Trigger animation
+            requestAnimationFrame(() => star.classList.add('animate'));
+
+            // Remove after animation
+            setTimeout(() => star.remove(), duration * 1000 + 100);
+        }
+
+        // Spawn a shooting star every 2-4 seconds
+        function scheduleShootingStar() {
+            spawnShootingStar();
+            const nextDelay = 2000 + Math.random() * 2000;
+            setTimeout(scheduleShootingStar, nextDelay);
+        }
+        // Start after a brief delay, and spawn a couple immediately
+        setTimeout(scheduleShootingStar, 1000);
+        setTimeout(spawnShootingStar, 2500);
+
         // Scroll animations for timeline items
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -550,22 +636,23 @@
             const container = document.getElementById('peachRain');
             container.classList.add('active');
 
-            const emojis = ['🍑'];
-            const count = 60;
+            const count = 50;
 
             for (let i = 0; i < count; i++) {
                 setTimeout(() => {
-                    const drop = document.createElement('div');
+                    const drop = document.createElement('img');
+                    drop.src = 'images/peach.jpg';
                     drop.className = 'peach-drop';
-                    drop.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                     drop.style.left = Math.random() * 100 + 'vw';
-                    drop.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+                    const size = 30 + Math.random() * 60; // 30px to 90px
+                    drop.style.width = size + 'px';
+                    drop.style.height = 'auto';
                     drop.style.animationDuration = (2 + Math.random() * 3) + 's';
                     drop.style.animationDelay = '0s';
                     container.appendChild(drop);
 
                     setTimeout(() => drop.remove(), 5000);
-                }, i * 50);
+                }, i * 60);
             }
 
             // Hide rain container after 4s
