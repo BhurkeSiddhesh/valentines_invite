@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💕 For Snehal</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="valentine-page">
     <div class="background-hearts"></div>
 
@@ -29,19 +33,22 @@
         <!-- Main proposal content (hidden initially, revealed after typewriter) -->
         <div class="proposal-content" id="proposalContent" style="display: none;">
             <div class="invitation-text">A Special Question</div>
-            
+
             <h1 class="title valentine-title">
                 <span class="snehal-name">Snehal,</span><br>
                 Will You Be My Valentine? 💕
             </h1>
 
             <div class="image-container">
-                <img src="images/cute-ducks-in-love.svg" alt="Two adorable ducks with hearts" class="duck-image">
-                <div class="floating-heart-icon left"><span class="material-icons" aria-hidden="true">favorite</span></div>
-                <div class="floating-heart-icon right"><span class="material-icons" aria-hidden="true">favorite</span></div>
+                <img src="images/cute-ducks-in-love.svg" alt="Two adorable ducks with hearts" class="duck-image"
+                    id="duckImage" onerror="this.src='https://cdn-icons-png.flaticon.com/512/260/260185.png'">
+                <div class="floating-heart-icon left"><span class="material-icons" aria-hidden="true">favorite</span>
+                </div>
+                <div class="floating-heart-icon right"><span class="material-icons" aria-hidden="true">favorite</span>
+                </div>
             </div>
 
-            <p class="personal-message">
+            <p class="personal-message" id="personalMessage">
                 Every moment with you feels like magic ✨<br>
                 You make my heart go <em>dhak dhak</em> 🦆💕
             </p>
@@ -89,4 +96,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

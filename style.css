@@ -42,8 +42,15 @@ body.page-exit {
 }
 
 @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* ===========================
@@ -51,8 +58,10 @@ body.page-exit {
    =========================== */
 .background-hearts {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: -1;
 }
@@ -67,9 +76,19 @@ body.page-exit {
 }
 
 @keyframes falling {
-    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 /* Floating background emojis */
@@ -80,14 +99,41 @@ body.page-exit {
     pointer-events: none;
     animation: floatEmoji 6s ease-in-out infinite;
 }
-.emoji-1 { top: 10%; left: 5%; animation-delay: 0s; }
-.emoji-2 { top: 20%; right: 8%; animation-delay: 1.5s; }
-.emoji-3 { bottom: 15%; left: 10%; animation-delay: 3s; }
-.emoji-4 { bottom: 25%; right: 5%; animation-delay: 4.5s; }
+
+.emoji-1 {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.emoji-2 {
+    top: 20%;
+    right: 8%;
+    animation-delay: 1.5s;
+}
+
+.emoji-3 {
+    bottom: 15%;
+    left: 10%;
+    animation-delay: 3s;
+}
+
+.emoji-4 {
+    bottom: 25%;
+    right: 5%;
+    animation-delay: 4.5s;
+}
 
 @keyframes floatEmoji {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(10deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
 }
 
 /* ===========================
@@ -108,8 +154,15 @@ body.page-exit {
 }
 
 @keyframes cardAppear {
-    0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* ===========================
@@ -142,9 +195,17 @@ body.page-exit {
 }
 
 @keyframes unlockPop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2) rotate(15deg); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2) rotate(15deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .password-title {
@@ -181,8 +242,15 @@ body.page-exit {
 }
 
 @keyframes hintPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(255, 213, 79, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(255, 213, 79, 0.6); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 213, 79, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(255, 213, 79, 0.6);
+    }
 }
 
 .hint-icon {
@@ -259,11 +327,27 @@ body.page-exit {
 }
 
 @keyframes shakeIt {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-10px); }
-    40% { transform: translateX(10px); }
-    60% { transform: translateX(-8px); }
-    80% { transform: translateX(8px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-10px);
+    }
+
+    40% {
+        transform: translateX(10px);
+    }
+
+    60% {
+        transform: translateX(-8px);
+    }
+
+    80% {
+        transform: translateX(8px);
+    }
 }
 
 /* Feedback */
@@ -280,9 +364,17 @@ body.page-exit {
     opacity: 1;
 }
 
-.attempt-feedback.error { color: #E53935; }
-.attempt-feedback.success { color: #43A047; }
-.attempt-feedback.warning { color: #F9A825; }
+.attempt-feedback.error {
+    color: #E53935;
+}
+
+.attempt-feedback.success {
+    color: #43A047;
+}
+
+.attempt-feedback.warning {
+    color: #F9A825;
+}
 
 /* Hearts counter */
 .attempt-counter {
@@ -306,9 +398,17 @@ body.page-exit {
 }
 
 @keyframes heartBreak {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3) rotate(15deg); }
-    100% { transform: scale(0.8); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3) rotate(15deg);
+    }
+
+    100% {
+        transform: scale(0.8);
+    }
 }
 
 .attempts-text {
@@ -328,8 +428,15 @@ body.page-exit {
 }
 
 @keyframes priceyBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .pricey-text {
@@ -345,8 +452,15 @@ body.page-exit {
 }
 
 @keyframes fadeInText {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .btn-letmein {
@@ -374,9 +488,19 @@ body.page-exit {
 }
 
 @keyframes popIn {
-    0% { opacity: 0; transform: scale(0.5); }
-    80% { transform: scale(1.1); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    80% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* ===========================
@@ -396,15 +520,36 @@ body.page-exit {
     animation: heartPulse 1.5s ease-in-out infinite;
 }
 
-.header .material-icons:nth-child(2) { animation-delay: 0.2s; }
-.header .material-icons:nth-child(3) { animation-delay: 0.4s; }
-.header .material-icons:nth-child(4) { animation-delay: 0.6s; }
-.header .material-icons:nth-child(5) { animation-delay: 0.8s; }
-.header .material-icons:nth-child(6) { animation-delay: 1.0s; }
+.header .material-icons:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.header .material-icons:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.header .material-icons:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.header .material-icons:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.header .material-icons:nth-child(6) {
+    animation-delay: 1.0s;
+}
 
 @keyframes heartPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.3); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
 }
 
 .invitation-text {
@@ -435,8 +580,15 @@ body.page-exit {
 }
 
 @keyframes nameShimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* Typewriter entrance */
@@ -466,7 +618,10 @@ body.page-exit {
 }
 
 @keyframes textFadeOut {
-    to { opacity: 0; transform: translateY(-10px); }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 }
 
 /* Proposal reveal */
@@ -475,8 +630,15 @@ body.page-exit {
 }
 
 @keyframes proposalReveal {
-    0% { opacity: 0; transform: translateY(30px) scale(0.9); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* Personal message */
@@ -494,18 +656,93 @@ body.page-exit {
     margin: 20px auto;
     width: 100%;
     max-width: 280px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .duck-image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    object-fit: contain;
 }
 
-.duck-image:hover {
-    transform: scale(1.03) rotate(1deg);
+/* Duck state-specific animations */
+.duck-image.shake-anim {
+    animation: angryShake 0.5s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+    border: 2px solid #FFCDD2;
+}
+
+.duck-image.sad-anim {
+    filter: grayscale(0.2) contrast(0.9);
+}
+
+.duck-image.dance-anim {
+    animation: happyBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes angryShake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+@keyframes happyBounce {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
 }
 
 .floating-heart-icon {
@@ -531,13 +768,27 @@ body.page-exit {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(-15deg); }
-    50% { transform: translateY(-10px) rotate(-15deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-15deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-15deg);
+    }
 }
 
 @keyframes floatRight {
-    0%, 100% { transform: translateY(0) rotate(15deg); }
-    50% { transform: translateY(-10px) rotate(15deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(15deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(15deg);
+    }
 }
 
 /* Content & Buttons */
@@ -571,8 +822,15 @@ body.page-exit {
 }
 
 @keyframes yesPulse {
-    0%, 100% { box-shadow: 0 8px 25px rgba(255, 111, 97, 0.4); }
-    50% { box-shadow: 0 12px 35px rgba(255, 111, 97, 0.6); }
+
+    0%,
+    100% {
+        box-shadow: 0 8px 25px rgba(255, 111, 97, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 12px 35px rgba(255, 111, 97, 0.6);
+    }
 }
 
 .btn-yes:hover {
@@ -585,6 +843,8 @@ body.page-exit {
     color: #7A7A7A;
     position: relative;
     z-index: 1;
+    /* Removed transition for left/top so it jumps instantly */
+    transition: background-color 0.2s;
 }
 
 .btn-no:hover {
@@ -606,8 +866,15 @@ body.page-exit {
 }
 
 @keyframes celebrateJump {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(5deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
 }
 
 .success-sub {
@@ -640,13 +907,21 @@ body.page-exit {
 .hearts .heart:nth-child(2n) {
     animation-delay: 0.3s;
 }
+
 .hearts .heart:nth-child(3n) {
     animation-delay: 0.6s;
 }
 
 @keyframes heartFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-10px) scale(1.1); }
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
 }
 
 /* Confetti */
@@ -675,6 +950,7 @@ body.page-exit {
         transform: translateY(0) rotate(0deg) scale(1);
         opacity: 1;
     }
+
     100% {
         transform: translateY(500px) rotate(720deg) scale(0.3);
         opacity: 0;
@@ -769,8 +1045,15 @@ body.page-exit {
    Fade In Utility
    =========================== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* ===========================
@@ -782,33 +1065,33 @@ body.page-exit {
         padding: 25px 18px;
         border-radius: 24px;
     }
-    
+
     .password-title {
         font-size: 1.8em;
     }
-    
+
     .title {
         font-size: 1.9em;
     }
-    
+
     .typewriter {
         font-size: 1.5em;
     }
-    
+
     .btn {
         padding: 12px 25px;
         font-size: 1em;
     }
-    
+
     .password-input {
         padding: 12px 16px;
         font-size: 1em;
     }
-    
+
     .floating-emoji {
         font-size: 1.8em;
     }
-    
+
     .success-message h2 {
         font-size: 2.2em;
     }

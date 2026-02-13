@@ -8,10 +8,57 @@ const statusValue = document.getElementById('statusValue');
 const entranceText = document.getElementById('entranceText');
 const proposalContent = document.getElementById('proposalContent');
 const typewriterEl = document.getElementById('typewriter');
+const duckImage = document.getElementById('duckImage');
+const personalMessage = document.getElementById('personalMessage');
 
 let noBtnClickCount = 0;
+let resetTimer;
 
+// ============================================================
+// Duck State GIFs — reactive images based on user interaction
+// ============================================================
+const defaultImageSrc = 'images/cute-ducks-in-love.svg';
+
+const duckStates = {
+    // Sad crying duck
+    sad: 'https://media.tenor.com/1-1M7aKAeDYAAAAi/duck-sad.gif',
+    // Angry duck with knife
+    mad: 'https://media.tenor.com/Bn87sDq2b-QAAAAi/duck-knife.gif',
+    // Shocked/Questioning duck
+    shocked: 'https://media.tenor.com/fTTVgygGDh8AAAAi/quby-chan-duck.gif',
+    // Happy dancing duck
+    happy: 'https://media.tenor.com/Hw7jXW0bVwcAAAAi/duck-dance.gif'
+};
+
+// Preload images so transitions are instant
+function preloadImages() {
+    Object.values(duckStates).forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
+
+function setDuckState(state) {
+    if (!duckImage) return;
+
+    if (state === 'default') {
+        duckImage.src = defaultImageSrc;
+    } else if (duckStates[state]) {
+        duckImage.src = duckStates[state];
+    }
+
+    // Reset animation classes
+    duckImage.className = 'duck-image';
+
+    // Add state-specific animation
+    if (state === 'mad') duckImage.classList.add('shake-anim');
+    if (state === 'sad') duckImage.classList.add('sad-anim');
+    if (state === 'happy') duckImage.classList.add('dance-anim');
+}
+
+// ============================================================
 // Typewriter entrance sequence
+// ============================================================
 const messages = [
     "Hey Snehal... 💕",
     "I have something really important to ask you...",
@@ -60,19 +107,27 @@ function typeWriter() {
     }
 }
 
-// Start typewriter on load
+// Start on load
 window.addEventListener('load', () => {
+    preloadImages();
     setTimeout(typeWriter, 800);
     createFallingHearts();
     setInterval(createFallingHearts, 10000);
 });
 
-// When user clicks "Yes"
+// ============================================================
+// "Yes" button — celebration!
+// ============================================================
 yesBtn.addEventListener('click', () => {
+    setDuckState('happy');
+
+    // Hide buttons and personal message
     content.style.display = 'none';
+    if (personalMessage) personalMessage.style.display = 'none';
+
     successMessage.style.display = 'block';
 
-    // Update status
+    // Update status footer
     if (statusValue) {
         statusValue.textContent = 'Snehal said YES! 🎉💕';
         statusValue.style.color = '#FF6F61';
@@ -86,76 +141,109 @@ yesBtn.addEventListener('click', () => {
         heartsContainer.appendChild(heart);
     }
 
-    // Confetti burst
+    // Effects
     createConfettiBurst();
-    // Falling hearts
     createFallingHearts();
     createFallingHearts();
 });
 
-// Runaway "No" button
-noBtn.addEventListener('mouseenter', () => {
-    noBtnClickCount++;
+// ============================================================
+// Runaway "No" button — with reactive duck states
+// ============================================================
+const noTexts = [
+    "No",
+    "Are you sure? 🦆",
+    "Really?",
+    "Think again!",
+    "Really, Snehal?! 🥺",
+    "Surely not?",
+    "You can't say no! 😤",
+    "Give it another thought!",
+    "The button is scared! 😱",
+    "This could be a mistake!",
+    "PLEASE? 💔🦆",
+    "Don't be so cold!",
+    "I'll be sad forever 😢",
+    "Change of heart?",
+    "Is that your final answer?",
+    "You're breaking my heart ;(",
+    "Just click Yes already! 💕"
+];
 
+function runAway() {
+    noBtnClickCount++;
+    clearTimeout(resetTimer);
+
+    // Change duck state based on attempts
+    if (noBtnClickCount === 1) {
+        setDuckState('shocked');
+    } else if (noBtnClickCount >= 2 && noBtnClickCount < 5) {
+        setDuckState('sad');
+    } else if (noBtnClickCount >= 5) {
+        setDuckState('mad');
+    }
+
+    // Calculate random position within card
     const card = document.querySelector('.valentine-card');
     const cardRect = card.getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
 
-    const padding = 30;
-    const maxX = cardRect.width - btnRect.width - padding;
-    const maxY = cardRect.height - btnRect.height - padding;
+    const padding = 20;
+    const maxX = Math.max(0, cardRect.width - btnRect.width - padding);
+    const maxY = Math.max(0, cardRect.height - btnRect.height - padding);
 
-    const safeMaxX = Math.max(0, maxX);
-    const safeMaxY = Math.max(0, maxY);
-
-    const randomX = Math.random() * safeMaxX;
-    const randomY = Math.random() * safeMaxY;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
 
     noBtn.style.position = 'absolute';
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
     noBtn.style.zIndex = '100';
 
-    // Yes button grows
-    const newSize = 1 + (noBtnClickCount * 0.12);
+    // Grow Yes button
+    const newSize = 1 + (noBtnClickCount * 0.1);
     yesBtn.style.transform = `scale(${newSize})`;
 
-    // Changing text
-    const noTexts = {
-        2: 'Are you sure? 🦆',
-        4: 'Really, Snehal?! 🥺',
-        6: 'You can\'t say no! 😤',
-        8: 'The button is scared! 😱',
-        10: 'PLEASE? 💔🦆',
-        12: 'I\'ll be sad forever 😢',
-        14: 'Just click Yes already! 💕'
-    };
-    if (noTexts[noBtnClickCount]) {
-        noBtn.textContent = noTexts[noBtnClickCount];
-    }
+    // Change text
+    const textIndex = Math.min(noBtnClickCount, noTexts.length - 1);
+    noBtn.textContent = noTexts[textIndex];
+
+    // Reset duck face after 4 seconds of calm
+    resetTimer = setTimeout(() => {
+        if (successMessage.style.display === 'none' || !successMessage.style.display) {
+            setDuckState('default');
+        }
+    }, 4000);
+}
+
+// Mouse hover
+noBtn.addEventListener('mouseenter', runAway);
+
+// Touch support for mobile
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    runAway();
 });
 
-// Click on No (if somehow managed)
+// If they somehow manage to click it
 noBtn.addEventListener('click', () => {
     const responses = [
-        "Nice try! But the button ran away 😉",
+        "Nice try! But you can't say no to this! 🦆💕",
         "That's not how this works, Snehal! 🦆",
         "The No button is on my side! 💕",
         "Error 404: 'No' not found 😏"
     ];
     alert(responses[Math.floor(Math.random() * responses.length)]);
+    setDuckState('mad');
 });
 
-// Also handle touch for mobile
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    noBtn.dispatchEvent(new Event('mouseenter'));
-});
-
-// Confetti burst
+// ============================================================
+// Effects
+// ============================================================
 function createConfettiBurst() {
     const colors = ['#FF6F61', '#FFB7B2', '#FFDAC1', '#FFD700', '#FF69B4', '#FF1493'];
     const burst = document.getElementById('celebrationBurst');
+    if (!burst) return;
 
     for (let i = 0; i < 50; i++) {
         setTimeout(() => {
@@ -171,7 +259,6 @@ function createConfettiBurst() {
     }
 }
 
-// Background falling hearts
 function createFallingHearts() {
     const maxActiveHearts = 12;
     for (let i = 0; i < maxActiveHearts; i++) {
