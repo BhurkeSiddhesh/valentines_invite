@@ -3,7 +3,7 @@ import urllib.request
 import json
 import os
 
-API_KEY = "pG7xxZFXFSnRhLpinIUb9HI0wrBGRGtx"
+API_KEY = ""
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 
 SEARCHES = [
