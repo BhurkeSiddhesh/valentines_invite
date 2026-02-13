@@ -10,8 +10,11 @@ const proposalContent = document.getElementById('proposalContent');
 const typewriterEl = document.getElementById('typewriter');
 const duckImage = document.getElementById('duckImage');
 const personalMessage = document.getElementById('personalMessage');
+const chancesContainer = document.getElementById('chancesContainer');
+const chancesValue = document.getElementById('chancesValue');
 
 let noBtnClickCount = 0;
+let maxChances = 10;
 let resetTimer;
 
 // ============================================================
@@ -124,9 +127,14 @@ window.addEventListener('load', () => {
 yesBtn.addEventListener('click', () => {
     setDuckState('happy');
 
-    // Hide buttons and personal message
+    // Hide buttons, personal message, and dialogue
     content.style.display = 'none';
     if (personalMessage) personalMessage.style.display = 'none';
+    if (chancesContainer) chancesContainer.style.display = 'none';
+
+    // Explicitly hide dialogue
+    const dialogue = document.getElementById('duck-dialogue');
+    if (dialogue) dialogue.classList.add('hidden');
 
     successMessage.style.display = 'block';
 
@@ -177,7 +185,40 @@ const dialogueText = [
 
 function runAway() {
     noBtnClickCount++;
+    maxChances--;
+
+    // Update chances display
+    if (chancesValue) {
+        chancesValue.textContent = Math.max(0, maxChances);
+        // Turn redder as it gets lower
+        if (maxChances <= 3) {
+            chancesValue.style.color = '#ff0000';
+            chancesValue.style.fontSize = '1.2rem';
+        }
+    }
+
     clearTimeout(resetTimer);
+
+    // If chances run out
+    if (maxChances <= 0) {
+        // Remove No button
+        noBtn.style.display = 'none';
+
+        // Hide chances
+        if (chancesContainer) chancesContainer.style.display = 'none';
+
+        // Show final plea dialogue
+        const dialogue = document.getElementById('duck-dialogue');
+        if (dialogue) {
+            dialogue.classList.remove('hidden');
+            dialogue.textContent = "Okay, I give up! You have to say Yes now! 🥺👉👈";
+        }
+
+        // Make Yes button huge
+        yesBtn.style.transform = 'scale(1.5)';
+        setDuckState('sad'); // Or maybe 'mad' -> "Just click it!"
+        return;
+    }
 
     // Show dialogue
     const dialogue = document.getElementById('duck-dialogue');

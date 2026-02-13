@@ -646,11 +646,31 @@ body.page-exit {
     font-size: 1em;
     color: #7A7A7A;
     line-height: 1.7;
-    margin-bottom: 15px;
-    font-style: italic;
+    margin-top: 2rem;
+    font-size: 1.2rem;
 }
 
-/* Image container */
+.chances-container {
+    margin-top: 15px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #888;
+    transition: opacity 0.3s ease;
+}
+
+.chances-text {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#chancesValue {
+    font-weight: 700;
+    color: #ff4d6d;
+}
+
+/* Success Message */
 .image-container {
     position: relative;
     margin: 20px auto;
@@ -821,34 +841,27 @@ body.page-exit {
     animation: yesPulse 2s ease-in-out infinite;
 }
 
-@keyframes yesPulse {
-
-    0%,
-    100% {
-        box-shadow: 0 8px 25px rgba(255, 111, 97, 0.4);
-    }
-
-    50% {
-        box-shadow: 0 12px 35px rgba(255, 111, 97, 0.6);
-    }
+background: #2ecc71;
+/* Green */
+color: white;
+box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
 }
 
 .btn-yes:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 14px 35px rgba(255, 111, 97, 0.5);
+    background: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
 }
 
 .btn-no {
-    background: #F0F0F0;
-    color: #7A7A7A;
-    position: relative;
-    z-index: 1;
-    /* Removed transition for left/top so it jumps instantly */
-    transition: background-color 0.2s;
+    background: #ff4d6d;
+    /* Red */
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
 }
 
 .btn-no:hover {
-    background: #E0E0E0;
+    background: #d63353;
 }
 
 /* Success message */
