@@ -9,7 +9,6 @@ const attemptCounter = document.getElementById('attemptCounter');
 const priceySection = document.getElementById('priceySection');
 const priceyText = document.getElementById('priceyText');
 const letMeInBtn = document.getElementById('letMeInBtn');
-const letMeInBtn = document.getElementById('letMeInBtn');
 const hintBox = document.getElementById('hintBox');
 const pondyaaOverlay = document.getElementById('pondyaaOverlay');
 
