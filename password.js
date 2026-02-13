@@ -21,7 +21,7 @@ const wrongMessages = [
     "Nope! Try again 😜",
     "Still wrong! Think harder... 🤔",
     "Come onnnn, you know this! 😅",
-    "Are you even my Bochuu?! 🦆😤",
+    "Are you even my Bochuu?! 🐣😤",
     "Last chance... or maybe not 😏"
 ];
 
@@ -44,7 +44,7 @@ function checkPassword() {
 
     if (value === SECRET) {
         // Correct!
-        showFeedback("YESSS! That's me! 🦆💕", "success");
+        showFeedback("YESSS! That's me! 🐣💕", "success");
         lockIcon.innerHTML = '<span class="material-icons">lock_open</span>';
         lockIcon.classList.add('unlocked');
         inputGroup.classList.add('success');
@@ -100,7 +100,7 @@ function checkPassword() {
 
         hintBox.innerHTML = `
             <span class="material-icons hint-icon">lightbulb</span>
-            <p class="hint-text"><strong>Hint:</strong> It starts with "Bo" and ends with "uu" 🦆</p>
+            <p class="hint-text"><strong>Hint:</strong> It starts with "Bo" and ends with "uu" 🐣</p>
         `;
         hintBox.classList.add('hint-glow');
     }
@@ -108,7 +108,7 @@ function checkPassword() {
     if (attempts === 4) {
         hintBox.innerHTML = `
             <span class="material-icons hint-icon">lightbulb</span>
-            <p class="hint-text"><strong>Big Hint:</strong> B _ _ _ u u 🦆 (6 letters!)</p>
+            <p class="hint-text"><strong>Big Hint:</strong> B _ _ _ u u 🐣 (6 letters!)</p>
         `;
     }
 
@@ -198,7 +198,7 @@ function createFallingHearts() {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.className = 'bg-heart';
-            heart.textContent = ['💕', '🦆', '✨', '💌'][Math.floor(Math.random() * 4)];
+            heart.textContent = ['💕', '🐣', '✨', '💌'][Math.floor(Math.random() * 4)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDelay = Math.random() * 2 + 's';
             const dur = Math.random() * 3 + 5;

@@ -89,7 +89,7 @@ function setDuckState(state) {
 const messages = [
     "Hey Snehal... 💕",
     "I have something really important to ask you...",
-    "Something I've been thinking about for a while now... 🦆",
+    "Something I've been thinking about for a while now... 🐣",
     "Are you ready? 👀"
 ];
 
@@ -174,7 +174,7 @@ yesBtn.addEventListener('click', () => {
         for (let i = 0; i < 15; i++) {
             const heart = document.createElement('span');
             heart.className = 'heart';
-            heart.textContent = ['❤️', '💕', '🦆', '✨', '🍑'][Math.floor(Math.random() * 5)];
+            heart.textContent = ['❤️', '💕', '🐣', '✨', '🍑'][Math.floor(Math.random() * 5)];
             heartsContainer.appendChild(heart);
         }
 
@@ -257,7 +257,7 @@ const noTexts = [
 
 const dialogueText = [
     "No? 🥺",
-    "Are you sure? 🦆",
+    "Are you sure? 🐣",
     "Please don't! 💔",
     "I'm gonna cry... 😭",
     "You're breaking my heart! 💔",
@@ -373,8 +373,8 @@ noBtn.addEventListener('touchstart', (e) => {
 // If they somehow manage to click it
 noBtn.addEventListener('click', () => {
     const responses = [
-        "Nice try! But you can't say no to this! 🦆💕",
-        "That's not how this works, Snehal! 🦆",
+        "Nice try! But you can't say no to this! 🐣💕",
+        "That's not how this works, Snehal! 🐣",
         "The No button is on my side! 💕",
         "Error 404: 'No' not found 😏"
     ];
@@ -411,7 +411,7 @@ function createFallingHearts() {
             const heart = document.createElement('div');
             heart.className = 'bg-heart';
             // Mix of hearts and PEACHES 🍑
-            const symbols = ['💕', '🦆', '✨', '🍑', '🍑', '🍑', '❤️'];
+            const symbols = ['💕', '🐣', '✨', '🍑', '🍑', '🍑', '❤️'];
             heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
             // Random size variation (0.8x to 2.5x)
