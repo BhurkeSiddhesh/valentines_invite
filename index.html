@@ -3,68 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? 🦆</title>
+    <title>🔒 Secret Page</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="password-page">
     <div class="background-hearts"></div>
 
-    <div class="card">
-        <div class="header">
-            <span class="material-icons" aria-hidden="true">favorite</span>
-            <span class="material-icons" aria-hidden="true">favorite</span>
-            <span class="material-icons" aria-hidden="true">favorite</span>
-            <span class="material-icons" aria-hidden="true">favorite</span>
-            <span class="material-icons" aria-hidden="true">favorite</span>
-            <span class="material-icons" aria-hidden="true">favorite</span>
+    <!-- Floating emojis in background -->
+    <div class="floating-emoji emoji-1">🦆</div>
+    <div class="floating-emoji emoji-2">💌</div>
+    <div class="floating-emoji emoji-3">✨</div>
+    <div class="floating-emoji emoji-4">🦆</div>
+
+    <div class="card password-card">
+        <div class="lock-icon" id="lockIcon">
+            <span class="material-icons">lock</span>
         </div>
 
-        <div class="invitation-text">Special Invitation</div>
-        
-        <h1 class="title">Will You Be My Valentine?</h1>
+        <h1 class="password-title">Heyy you! 👋</h1>
+        <p class="password-subtitle">This page is <strong>top secret</strong>. Only one special person can open it.</p>
 
-        <div class="image-container">
-            <img src="images/cute-ducks-in-love.svg" alt="Two adorable ducks with hearts around them, representing love and romance" class="duck-image">
-            <div class="floating-heart-icon left"><span class="material-icons" aria-hidden="true">favorite</span></div>
-            <div class="floating-heart-icon right"><span class="material-icons" aria-hidden="true">favorite</span></div>
+        <div class="hint-box" id="hintBox">
+            <span class="material-icons hint-icon">lightbulb</span>
+            <p class="hint-text"><strong>Hint:</strong> What do I call you very often? <br><em>(the word ends with "uu" 👀)</em></p>
         </div>
 
-        <div class="content" id="content">
-            <div class="button-container">
-                <button class="btn btn-yes" id="yesBtn">Yes! 🦆</button>
-                <button class="btn btn-no" id="noBtn">No</button>
+        <div class="password-input-group" id="inputGroup">
+            <input type="text" id="passwordInput" class="password-input" placeholder="Type the magic word..." autocomplete="off" spellcheck="false">
+            <button class="btn-unlock" id="unlockBtn">
+                <span class="material-icons">arrow_forward</span>
+            </button>
+        </div>
+
+        <div class="attempt-feedback" id="feedback"></div>
+
+        <div class="attempt-counter" id="attemptCounter">
+            <div class="hearts-left" id="heartsLeft">
+                <span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span>
             </div>
+            <p class="attempts-text">5 chances left</p>
         </div>
 
-        <div class="success-message" id="successMessage" style="display: none;">
-            <h2>Yay! 🎉</h2>
-            <p>You've made me the happiest person! 💕</p>
-            <div class="hearts" id="hearts"></div>
-        </div>
-
-        <div class="footer">
-            <div class="status-section">
-                <div class="status-row">
-                    <span class="material-icons icon-love">favorite</span>
-                    <div class="status-text">
-                        <span class="status-label">Status</span>
-                        <span class="status-value" id="statusValue">Waiting for answer...</span>
-                    </div>
-                </div>
-                <div class="status-row">
-                    <span class="material-icons icon-event">local_activity</span>
-                    <div class="status-text">
-                        <span class="status-label">Event</span>
-                        <span class="status-value">Valentine's Day 2024</span>
-                    </div>
-                </div>
-            </div>
-            <div class="made-with-love">Made with love</div>
+        <!-- Pricey mode - shown after too many failures -->
+        <div class="pricey-section" id="priceySection" style="display: none;">
+            <div class="pricey-emoji">😤</div>
+            <p class="pricey-text" id="priceyText"></p>
+            <button class="btn-letmein" id="letMeInBtn" style="display: none;">Okay okay, let me in! 🥺</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="password.js"></script>
 </body>
 </html>

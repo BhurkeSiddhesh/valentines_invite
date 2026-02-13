@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 For Snehal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="valentine-page">
+    <div class="background-hearts"></div>
+
+    <div class="card valentine-card" id="valentineCard">
+        <div class="header">
+            <span class="material-icons" aria-hidden="true">favorite</span>
+            <span class="material-icons" aria-hidden="true">favorite</span>
+            <span class="material-icons" aria-hidden="true">favorite</span>
+            <span class="material-icons" aria-hidden="true">favorite</span>
+            <span class="material-icons" aria-hidden="true">favorite</span>
+            <span class="material-icons" aria-hidden="true">favorite</span>
+        </div>
+
+        <!-- Entrance animation text -->
+        <div class="entrance-text" id="entranceText">
+            <p class="typewriter" id="typewriter"></p>
+        </div>
+
+        <!-- Main proposal content (hidden initially, revealed after typewriter) -->
+        <div class="proposal-content" id="proposalContent" style="display: none;">
+            <div class="invitation-text">A Special Question</div>
+            
+            <h1 class="title valentine-title">
+                <span class="snehal-name">Snehal,</span><br>
+                Will You Be My Valentine? 💕
+            </h1>
+
+            <div class="image-container">
+                <img src="images/cute-ducks-in-love.svg" alt="Two adorable ducks with hearts" class="duck-image">
+                <div class="floating-heart-icon left"><span class="material-icons" aria-hidden="true">favorite</span></div>
+                <div class="floating-heart-icon right"><span class="material-icons" aria-hidden="true">favorite</span></div>
+            </div>
+
+            <p class="personal-message">
+                Every moment with you feels like magic ✨<br>
+                You make my heart go <em>dhak dhak</em> 🦆💕
+            </p>
+
+            <div class="content" id="content">
+                <div class="button-container">
+                    <button class="btn btn-yes" id="yesBtn">Yes! 🦆💕</button>
+                    <button class="btn btn-no" id="noBtn">No</button>
+                </div>
+            </div>
+
+            <div class="success-message" id="successMessage" style="display: none;">
+                <div class="celebration-burst" id="celebrationBurst"></div>
+                <h2>YESSSS! 🎉🎉🎉</h2>
+                <p class="success-sub">I knew it, Bochuu! 🦆💕</p>
+                <p class="success-detail">You've made me the happiest person in the whole universe! 🌍✨</p>
+                <div class="hearts" id="hearts"></div>
+                <div class="countdown-section">
+                    <p class="countdown-label">Valentine's Day is coming!</p>
+                    <p class="countdown-date">February 14, 2026 ❤️</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="status-section">
+                <div class="status-row">
+                    <span class="material-icons icon-love">favorite</span>
+                    <div class="status-text">
+                        <span class="status-label">Status</span>
+                        <span class="status-value" id="statusValue">Waiting for Snehal's answer... 🦆</span>
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span class="material-icons icon-event">local_activity</span>
+                    <div class="status-text">
+                        <span class="status-label">Event</span>
+                        <span class="status-value">Valentine's Day 2026 💕</span>
+                    </div>
+                </div>
+            </div>
+            <div class="made-with-love">Made with all my love, for you 💕</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
