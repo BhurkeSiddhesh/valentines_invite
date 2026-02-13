@@ -65,16 +65,21 @@ function checkPassword() {
     attempts++;
     shakeInput();
 
-    // Remove a heart
+    // Update hearts display — red for remaining, black for used
     const hearts = heartsLeft.querySelectorAll('span');
-    if (hearts.length > 0) {
-        const lastHeart = hearts[hearts.length - 1];
-        lastHeart.classList.add('heart-break');
-        setTimeout(() => lastHeart.textContent = '🖤', 300);
-    }
+    const remaining = maxAttempts - attempts;
+    hearts.forEach((heart, idx) => {
+        if (idx < remaining) {
+            heart.textContent = '❤️';
+        } else {
+            if (heart.textContent !== '🖤') {
+                heart.classList.add('heart-break');
+                setTimeout(() => { heart.textContent = '🖤'; }, 300);
+            }
+        }
+    });
 
     // Update counter text
-    const remaining = maxAttempts - attempts;
     const attemptsText = document.querySelector('.attempts-text');
     if (remaining > 0) {
         attemptsText.textContent = `${remaining} chance${remaining !== 1 ? 's' : ''} left`;

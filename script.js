@@ -182,31 +182,41 @@ yesBtn.addEventListener('click', () => {
         createConfettiBurst();
         createFallingHearts();
         createFallingHearts();
-    }, 2500);
+    }, 5000);
 });
 
-// 🍑 Peach Image Fireworks
+// 🍑🐤🐣 Celebration Fireworks
 function launchPeachFireworks() {
-    const burstCount = 5;
+    const burstCount = 9; // ~4.5 seconds total (9 x 500ms)
+    const chickEmojis = ['🐤', '🐣'];
 
     for (let burst = 0; burst < burstCount; burst++) {
         setTimeout(() => {
-            const originX = 20 + Math.random() * 60;
-            const originY = 30 + Math.random() * 40;
-            const particleCount = 12 + Math.floor(Math.random() * 8);
+            const originX = 15 + Math.random() * 70;
+            const originY = 20 + Math.random() * 50;
+            const particleCount = 10 + Math.floor(Math.random() * 8);
 
             for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('img');
-                particle.src = 'images/peach.jpg';
+                const useImage = Math.random() < 0.5; // 50% peach image, 50% chick emoji
+                let particle;
+
+                if (useImage) {
+                    particle = document.createElement('img');
+                    particle.src = 'images/peach.jpg';
+                    const size = 25 + Math.random() * 45;
+                    particle.style.width = size + 'px';
+                    particle.style.height = 'auto';
+                } else {
+                    particle = document.createElement('div');
+                    particle.textContent = chickEmojis[Math.floor(Math.random() * chickEmojis.length)];
+                    particle.style.fontSize = (1.2 + Math.random() * 2) + 'rem';
+                }
+
                 particle.style.position = 'fixed';
                 particle.style.zIndex = '10000';
                 particle.style.pointerEvents = 'none';
                 particle.style.left = originX + '%';
                 particle.style.top = originY + '%';
-
-                const size = 25 + Math.random() * 50;
-                particle.style.width = size + 'px';
-                particle.style.height = 'auto';
 
                 const angle = (Math.PI * 2 * i) / particleCount + (Math.random() * 0.5);
                 const velocity = 150 + Math.random() * 250;
@@ -223,7 +233,7 @@ function launchPeachFireworks() {
                     particle.style.opacity = '0';
                 });
 
-                setTimeout(() => particle.remove(), 1300);
+                setTimeout(() => particle.remove(), 1400);
             }
         }, burst * 500);
     }
