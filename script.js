@@ -157,27 +157,82 @@ yesBtn.addEventListener('click', () => {
     const dialogue = document.getElementById('duck-dialogue');
     if (dialogue) dialogue.classList.add('hidden');
 
-    successMessage.style.display = 'block';
+    // 🍑 FIREWORKS FIRST! Then show success page after 2.5s
+    launchPeachFireworks();
 
-    // Update status footer
-    if (statusValue) {
-        statusValue.textContent = 'Snehal said YES! 🍑🎉💕';
-        statusValue.style.color = '#FF6F61';
-    }
+    setTimeout(() => {
+        successMessage.style.display = 'block';
 
-    // Create inline hearts and peaches
-    for (let i = 0; i < 15; i++) { // Increased count
-        const heart = document.createElement('span');
-        heart.className = 'heart';
-        heart.textContent = ['❤️', '💕', '🦆', '✨', '🍑'][Math.floor(Math.random() * 5)];
-        heartsContainer.appendChild(heart);
-    }
+        // Update status footer
+        const footerStatus = document.getElementById('footerStatusValue');
+        if (footerStatus) {
+            footerStatus.textContent = 'Snehal said YES! 🍑🎉💕';
+            footerStatus.style.color = '#FF6F61';
+        }
 
-    // Effects
-    createConfettiBurst();
-    createFallingHearts();
-    createFallingHearts();
+        // Create inline hearts and peaches
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('span');
+            heart.className = 'heart';
+            heart.textContent = ['❤️', '💕', '🦆', '✨', '🍑'][Math.floor(Math.random() * 5)];
+            heartsContainer.appendChild(heart);
+        }
+
+        // Effects
+        createConfettiBurst();
+        createFallingHearts();
+        createFallingHearts();
+    }, 2500);
 });
+
+// 🍑 Peach Emoji Fireworks
+function launchPeachFireworks() {
+    const emojis = ['🍑', '🍑', '🍑', '💕', '❤️', '✨', '🎉'];
+    const burstCount = 5; // Number of burst waves
+
+    for (let burst = 0; burst < burstCount; burst++) {
+        setTimeout(() => {
+            // Random burst origin point
+            const originX = 20 + Math.random() * 60; // 20-80% of screen width
+            const originY = 30 + Math.random() * 40; // 30-70% of screen height
+            const particleCount = 15 + Math.floor(Math.random() * 10);
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.zIndex = '10000';
+                particle.style.pointerEvents = 'none';
+                particle.style.left = originX + '%';
+                particle.style.top = originY + '%';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+                // Random size
+                const size = 1 + Math.random() * 2.5;
+                particle.style.fontSize = size + 'rem';
+
+                // Physics-based trajectory
+                const angle = (Math.PI * 2 * i) / particleCount + (Math.random() * 0.5);
+                const velocity = 150 + Math.random() * 250;
+                const dx = Math.cos(angle) * velocity;
+                const dy = Math.sin(angle) * velocity;
+
+                particle.style.transition = 'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                particle.style.opacity = '1';
+
+                document.body.appendChild(particle);
+
+                // Animate outward
+                requestAnimationFrame(() => {
+                    particle.style.transform = `translate(${dx}px, ${dy}px) rotate(${Math.random() * 720}deg)`;
+                    particle.style.opacity = '0';
+                });
+
+                // Remove after animation
+                setTimeout(() => particle.remove(), 1300);
+            }
+        }, burst * 500); // Stagger each burst by 500ms
+    }
+}
 
 // ============================================================
 // Runaway "No" button — with reactive duck states
