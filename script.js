@@ -21,13 +21,13 @@ const defaultImageSrc = 'images/cute-ducks-in-love.svg';
 
 const duckStates = {
     // Sad crying duck
-    sad: 'https://media.tenor.com/1-1M7aKAeDYAAAAi/duck-sad.gif',
-    // Angry duck with knife
-    mad: 'https://media.tenor.com/Bn87sDq2b-QAAAAi/duck-knife.gif',
+    sad: 'images/duck-sad.gif',
+    // Angry duck
+    mad: 'images/duck-angry.gif',
     // Shocked/Questioning duck
-    shocked: 'https://media.tenor.com/fTTVgygGDh8AAAAi/quby-chan-duck.gif',
+    shocked: 'images/duck-shocked.gif',
     // Happy dancing duck
-    happy: 'https://media.tenor.com/Hw7jXW0bVwcAAAAi/duck-dance.gif'
+    happy: 'images/duck-happy.gif'
 };
 
 // Preload images so transitions are instant
@@ -41,6 +41,9 @@ function preloadImages() {
 function setDuckState(state) {
     if (!duckImage) return;
 
+    // ... (rest of function) ...
+
+    // Change image source
     if (state === 'default') {
         duckImage.src = defaultImageSrc;
     } else if (duckStates[state]) {
@@ -170,9 +173,25 @@ const noTexts = [
     "Just click Yes already! 💕"
 ];
 
+const dialogueText = [
+    "No? 🥺",
+    "Are you sure? 🦆",
+    "Please don't! 💔",
+    "I'm gonna cry... 😭",
+    "You're breaking my heart! 💔",
+    "Just click Yes! 😠"
+];
+
 function runAway() {
     noBtnClickCount++;
     clearTimeout(resetTimer);
+
+    // Show dialogue
+    const dialogue = document.getElementById('duck-dialogue');
+    if (dialogue) {
+        dialogue.classList.remove('hidden');
+        dialogue.textContent = dialogueText[Math.min(noBtnClickCount - 1, dialogueText.length - 1)];
+    }
 
     // Change duck state based on attempts
     if (noBtnClickCount === 1) {
