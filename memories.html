@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories 💕🦆</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Timeline Header */
+        .memories-header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            position: relative;
+        }
+
+        .memories-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff9a9e;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 154, 158, 0.4);
+        }
+
+        .memories-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4, #ff9a9e);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #ff4d6d;
+            border-radius: 50%;
+            border: 4px solid #1a1a2e;
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+            width: 42%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 58%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 58%;
+            text-align: right;
+        }
+
+        .timeline-date {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #ff9a9e;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        .timeline-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .timeline-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Surprise Button */
+        .surprise-section {
+            text-align: center;
+            padding: 60px 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .surprise-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-surprise {
+            background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .btn-surprise:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.6);
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 10px 40px rgba(255, 77, 109, 0.7);
+            }
+        }
+
+        /* Video Section */
+        .video-section {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .video-section.active {
+            display: flex;
+        }
+
+        .video-section video {
+            max-width: 90%;
+            width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .video-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff9a9e;
+            margin-bottom: 20px;
+        }
+
+        /* Final Reveal Section */
+        .final-reveal {
+            display: none;
+            text-align: center;
+            padding: 40px 20px 80px;
+            min-height: 100vh;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .final-reveal.active {
+            display: flex;
+        }
+
+        .final-img {
+            width: 350px;
+            max-width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: scale(0.5) rotate(-5deg);
+            transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .final-img.reveal {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .final-summary {
+            max-width: 650px;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.8s;
+        }
+
+        .final-summary.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .final-summary h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff9a9e;
+            margin-bottom: 25px;
+        }
+
+        .final-summary p {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .final-summary .highlight {
+            color: #ff9a9e;
+            font-weight: 700;
+        }
+
+        .final-summary .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff9a9e;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Peach rain overlay */
+        .peach-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            display: none;
+        }
+
+        .peach-rain-container.active {
+            display: block;
+        }
+
+        .peach-drop {
+            position: fixed;
+            top: -50px;
+            animation: peachFall linear forwards;
+            z-index: 9999;
+        }
+
+        @keyframes peachFall {
+            to {
+                top: 105vh;
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            .memories-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px) !important;
+                margin-left: 50px !important;
+                margin-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .final-summary h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Stars background */
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Stars Background -->
+    <div id="stars"></div>
+
+    <!-- Peach Rain Container -->
+    <div class="peach-rain-container" id="peachRain"></div>
+
+    <!-- Section 1: Timeline -->
+    <div id="timelineSection">
+        <div class="memories-header">
+            <h1>Our Story 💕</h1>
+            <p>Scroll through our memories together 🦆</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">📅 29th April, 2025</div>
+                    <div class="timeline-title">How It All Started ✨</div>
+                    <p class="timeline-desc">
+                        Back at Ruia, then that random Welingkar moment, then Instagram DMs...
+                        The universe kept throwing us together. Who was I to argue? 🦆💕
+                    </p>
+                    <img src="images/first.jpg" alt="How it started" class="timeline-img">
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">📅 10th February, 2026</div>
+                    <div class="timeline-title">How Strong We're Going 💪🦆</div>
+                    <p class="timeline-desc">
+                        From late-night chats to being each other's person... look at us now!
+                        Still crazy, still wild, still falling for you every single day. 🍑
+                    </p>
+                    <img src="images/second.jpg" alt="How strong it is" class="timeline-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- Surprise Button -->
+        <div class="surprise-section" id="surpriseSection">
+            <p style="font-size: 1.2rem; color: rgba(255,255,255,0.6); margin-bottom: 20px;">
+                You've seen the past... now are you ready? 👀
+            </p>
+            <button class="btn-surprise" id="surpriseBtn">
+                🎁 One Last Surprise...
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 2: Video -->
+    <div class="video-section" id="videoSection">
+        <p class="video-label">Just watch this, Duckku... 🦆</p>
+        <video id="duckVideo" playsinline>
+            <source src="images/small_duckku.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Section 3: Final Reveal -->
+    <div class="final-reveal" id="finalReveal">
+        <img src="images/third.jpg" alt="Us" class="final-img" id="finalImg">
+        <div class="final-summary" id="finalSummary">
+            <h2>The Story of How Fluffy Fell For Duckku 🦆💕</h2>
+
+            <p>
+                So there was this boy — let's call him <span class="highlight">Fluffy</span> — who thought he was done
+                with love.
+                Read all the books, did the spiritual stuff, told himself "bro, you don't need it."
+                Classic mistake. 😂
+            </p>
+
+            <p>
+                Then one day, the universe went: <em>"Hold my chai ☕"</em> — and threw
+                <span class="highlight">Duckku</span> right into his life. First at Ruia (where she was in a whole
+                different building,
+                living her best life). Then at Welingkar — a random 2-second chat that his brain chose to forget.
+                And then... Instagram DMs. That's where Fluffy knew he was cooked. 🍳
+            </p>
+
+            <p>
+                He spent WEEKS writing a letter. Scratching out words, starting over, crumbling papers,
+                dramatically staring at the ceiling at 2 AM like a Bollywood hero. All because he wanted it to be
+                <span class="highlight">perfect</span> for her. The letter was 1000+ words. The man wrote an ESSAY of
+                love.
+                Even Sudhir Phadke would've been proud. 🎶
+            </p>
+
+            <p>
+                He called her his <em>"alma gemela"</em> — soul match. He compared their love to a
+                <span class="highlight">rare eclipse in a binary star system</span>. Yes, this boy really went full
+                astrophysics on a love letter. That's the level of nerd love we're talking about. 🌌
+            </p>
+
+            <p>
+                And now? Now Fluffy's here, building a whole website with ducks, peach emojis,
+                runaway buttons, and judgment sticker popups — all just to ask one question and tell one truth:
+            </p>
+
+            <p style="text-align: center; font-size: 1.3rem; color: #ff9a9e; font-weight: 700; margin: 30px 0;">
+                "I love you today, I loved you yesterday, and I'll love you till my very last breath.
+                Every version of me — the 16-year-old dreamer, the 20-year-old fighter, the man I'm becoming —
+                they all chose you. They'll always choose you." 💕
+            </p>
+
+            <p style="text-align: center; font-size: 1.2rem;">
+                Your Fluffy loves you SO much, Duckku. More than all the peach emojis in the world. 🍑🍑🍑
+            </p>
+
+            <div class="signature">
+                Forever & Always Yours,<br>
+                Fluffy 🦆💕
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 3) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Scroll animations for timeline items
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.timeline-item, .surprise-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Surprise button
+        document.getElementById('surpriseBtn').addEventListener('click', () => {
+            // Hide timeline
+            document.getElementById('timelineSection').style.display = 'none';
+
+            // Launch peach rain
+            launchPeachRain();
+
+            // Show video section after a short delay
+            setTimeout(() => {
+                const videoSection = document.getElementById('videoSection');
+                videoSection.classList.add('active');
+
+                const video = document.getElementById('duckVideo');
+                video.play();
+
+                // When video ends, show final reveal
+                video.addEventListener('ended', () => {
+                    videoSection.classList.remove('active');
+                    videoSection.style.display = 'none';
+
+                    // Show final reveal
+                    const finalReveal = document.getElementById('finalReveal');
+                    finalReveal.classList.add('active');
+
+                    // Animate elements in
+                    setTimeout(() => {
+                        document.getElementById('finalImg').classList.add('reveal');
+                        document.getElementById('finalSummary').classList.add('reveal');
+                        // One more peach celebration
+                        launchPeachRain();
+                    }, 300);
+                });
+            }, 1500);
+        });
+
+        // Peach Rain
+        function launchPeachRain() {
+            const container = document.getElementById('peachRain');
+            container.classList.add('active');
+
+            const emojis = ['🍑'];
+            const count = 60;
+
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const drop = document.createElement('div');
+                    drop.className = 'peach-drop';
+                    drop.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    drop.style.left = Math.random() * 100 + 'vw';
+                    drop.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+                    drop.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    drop.style.animationDelay = '0s';
+                    container.appendChild(drop);
+
+                    setTimeout(() => drop.remove(), 5000);
+                }, i * 50);
+            }
+
+            // Hide rain container after 4s
+            setTimeout(() => {
+                container.classList.remove('active');
+            }, 4000);
+        }
+    </script>
+</body>
+
+</html>
