@@ -155,22 +155,15 @@ yesBtn.addEventListener('click', () => {
 // ============================================================
 const noTexts = [
     "No",
-    "Are you sure? 🦆",
-    "Really?",
-    "Think again!",
-    "Really, Snehal?! 🥺",
-    "Surely not?",
-    "You can't say no! 😤",
-    "Give it another thought!",
-    "The button is scared! 😱",
-    "This could be a mistake!",
-    "PLEASE? 💔🦆",
-    "Don't be so cold!",
-    "I'll be sad forever 😢",
-    "Change of heart?",
-    "Is that your final answer?",
-    "You're breaking my heart ;(",
-    "Just click Yes already! 💕"
+    "No!",
+    "NO?",
+    "No...",
+    "No :(",
+    "No?!",
+    "No.",
+    "No 💔",
+    "Still No",
+    "No way"
 ];
 
 const dialogueText = [
